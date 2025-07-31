@@ -1,0 +1,19 @@
+apiVersion: app
+kind: Deployment
+metadata:
+  name: nginx-deployment         # Имя Deployment'а.
+spec:
+  replicas: 1                    # Количество реплик (подов).
+  selector:
+    matchLabels:
+      app: nginx                 # Метка для сопоставления с подами.
+  template:
+    metadata:
+      labels:
+        app: nginx               # Та же метка внутри pod'а.
+    spec:
+      containers:
+        - name: nginx            # Имя контейнера.
+          image: nginx:stable    # Образ nginx.
+          ports:
+            - containerPort: 80  # Открытый порт в контейнере.
